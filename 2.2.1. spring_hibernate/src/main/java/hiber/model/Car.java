@@ -1,9 +1,16 @@
 package hiber.model;
 
-import javax.persistence.*;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
+import javax.persistence.*;
+import java.util.Objects;
+
+@Component
 @Entity
 @Table(name = "cars")
+@Scope("prototype")
+
 public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -62,5 +69,18 @@ public class Car {
                 ", series=" + series +
                 ", user=" + user +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return series == car.series && Objects.equals(id, car.id) && Objects.equals(model, car.model) && Objects.equals(user, car.user);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, model, series, user);
     }
 }
