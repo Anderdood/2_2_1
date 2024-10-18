@@ -9,10 +9,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.Objects;
 
-@Component
 @Entity
 @Table(name = "users")
-@Scope("prototype")
 public class User {
 
     @Id

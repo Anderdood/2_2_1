@@ -6,11 +6,8 @@ import org.springframework.stereotype.Component;
 import javax.persistence.*;
 import java.util.Objects;
 
-@Component
 @Entity
 @Table(name = "cars")
-@Scope("prototype")
-
 public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
